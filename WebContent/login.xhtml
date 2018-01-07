@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+	<title>Gallery</title>
+	<h:outputText escape="false" value="#{app.commonLinks}"></h:outputText>
+	<link href="css/main.css" type="text/css" rel="stylesheet" />
+	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
+</h:head>
+<h:body>
+	<!-- Top Header -->
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"> Photo Booth </a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="/photo_booth_v_0.0.2/faces/index.xhtml">Home</a></li>
+			<li class="active"><a
+				href="/photo_booth_v_0.0.2/faces/gallery.xhtml">Gallery</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					Sign Up</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<h:outputText value="#{ login.loggedIn ? Logout : Login }"></h:outputText>Login</a></li>
+		</ul>
+	</div>
+	</nav>
+
+	<!-- Content -->
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav ">
+				<!-- put link infor over here -->
+			</div>
+			<div class="col-sm-8 text-left Login-Form">
+				<!-- gallery pics section -->
+				<h:form>
+					<div class = "form-group">
+					<label for="user-name">Email Address :</label>
+					<h:inputText type="email" placeholder="Your email address?" data-error="Email address is required!" class="form-control" id="email" value="#{email}" required="true"></h:inputText>
+					</div>
+					<div class="form-group">
+					<label for="password">Password :</label>
+					<h:inputText class="form-control" id="password" value="#{password}"></h:inputText>
+					</div>
+					<h:commandButton class="btn btn-default" value="Login" action="#{login.loginWithEmail(email, password)}"></h:commandButton>
+				</h:form>
+			</div>
+			<div class="col-sm-2 sidenav">
+				<div class="well">
+					<p>ADS</p>
+				</div>
+				<div class="well">
+					<p>ADS</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- footer -->
+	<ui:include src="/WEB-INF/footer.xhtml" />
+</h:body>
+</html>

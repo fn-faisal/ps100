@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+	<title>Photo Booth</title>
+	<h:outputStylesheet library="css" name="main.css" target="head" />
+	<h:outputText escape="false" value="#{app.commonLinks}"></h:outputText>	
+
+	<link href="css/main.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="js/angular/home-controller.js"/>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".gallery-container img").hide();
+			
+		});
+	</script>
+</h:head>
+<h:body>
+
+	<!--  Top Header  -->
+	<ui:include src="/WEB-INF/navbar.xhtml" />
+
+	<!--  content body -->
+	<div class="container-fluid text-center gallery-container " ng-app="homeApp" ng-controller="homeController">
+		<ui:repeat value="#{mainScreen.topTen}" var="picture">
+			<h:graphicImage width="100%" class="gallery-item col-5-xs" 
+				value="#{picture.url}">
+			</h:graphicImage>
+		</ui:repeat>
+		<h:commandButton class = "explore-button text-center" value="Explore"></h:commandButton>
+	</div>
+
+	<!--  footer -->
+	<ui:include src="/WEB-INF/footer.xhtml" />
+
+</h:body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+	<title>Gallery</title>
+	<h:outputText escape="false" value="#{app.commonLinks}"></h:outputText>
+	<link href="css/main.css" type="text/css" rel="stylesheet" />
+	<link href="css/gallery.css" type="text/css" rel="stylesheet" />
+</h:head>
+<h:body>
+
+	<!-- Top Header -->
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"> Photo Booth </a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="/photo_booth_v_0.0.2/faces/index.xhtml">Home</a></li>
+			<li class="active"><a
+				href="/photo_booth_v_0.0.2/faces/gallery.xhtml">Gallery</a></li>
+			<li class="pull-right"><a href="">Login</a>  </li>	
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="login.xhtml"><span class="glyphicon glyphicon-user"></span>
+					Sign Up</a></li>
+			<li><a href="login.xhtml"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li>
+		</ul>
+	</div>
+	</nav>
+	<!-- Content -->
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav ">
+				<!-- put link infor over here -->
+			</div>
+			<div class="col-sm-8 text-left gallery-content">
+				<!-- gallery pics section -->
+				<ui:repeat value="#{gallery.allGalleryItems}" var="galleryItem">
+					<div class="gallery-item">
+						<h:form>
+						<img class="gallery-image" src="#{galleryItem.url}"></img>
+						<img src="img/user.png"></img>
+						<p>Image Name : #{galleryItem.name}</p>
+						<p><small><h:commandButton value="#{galleryItem.likes}"  action="#{gallery.addLikesToGalleryItems(galleryItem.id)}"></h:commandButton>#{galleryItem.likes}|#{galleryItem.dislikes}</small></p>
+						<p><small>Rating : #{gallery.getProfileForGalleryId(galleryItem.id).rating}</small></p>
+						</h:form>
+					</div>
+					<hr />
+				</ui:repeat>
+
+			</div>
+			<div class="col-sm-2 sidenav">
+				<div class="well">
+					<p>ADS</p>
+				</div>
+				<div class="well">
+					<p>ADS</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- footer -->
+	<ui:include src="/WEB-INF/footer.xhtml" />
+</h:body>
+</html>
